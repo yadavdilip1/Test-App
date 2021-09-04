@@ -21,10 +21,6 @@ class BankViewModel @Inject constructor(
     val bankListItemsLiveData: LiveData<Resource<BankListModel>>
         get() = _bankListItemsLiveData
 
-    private val _bankSearchItemsLiveData = MutableLiveData<Resource<BankListModel>>()
-    val bankSearchItemsLiveData: LiveData<Resource<BankListModel>>
-        get() = _bankSearchItemsLiveData
-
 
 
 
@@ -38,10 +34,10 @@ class BankViewModel @Inject constructor(
         _bankListItemsLiveData.value = repository.getBankList()
     }
 
-    fun getbankSearchItems() = viewModelScope.launch {
+    fun getbankSearchItems(searchText:String) = viewModelScope.launch {
 
-        _bankSearchItemsLiveData.value = Resource.Loading
-        _bankSearchItemsLiveData.value = repository.getBankSearch("")
+        _bankListItemsLiveData.value = Resource.Loading
+        _bankListItemsLiveData.value = repository.getBankSearch(searchText)
 
     }
 

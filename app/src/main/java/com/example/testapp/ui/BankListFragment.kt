@@ -1,7 +1,10 @@
 package com.example.testapp.ui
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,6 +20,7 @@ import com.example.testapp.utils.handleApiError
 import com.example.testapp.utils.hide
 import com.example.testapp.utils.show
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class BankListFragment: Fragment(R.layout.fragment_banklist),ItemClick{
@@ -43,6 +47,22 @@ class BankListFragment: Fragment(R.layout.fragment_banklist),ItemClick{
         }
         bankAdapter = BankAdapter(this)
         binding.recyclerView.adapter = bankAdapter
+
+
+        binding.searchEditTxt.addTextChangedListener {
+
+            val searchText = it.toString()
+
+            if(searchText.isEmpty())
+            {
+                viewModel.getbankListItems()
+            }
+            else{
+                viewModel.getbankSearchItems(searchText)
+
+            }
+
+        }
 
 
     }
