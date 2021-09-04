@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.testapp.ui.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"
+        >
+
+        <action android:id="@+id/home_to_list"
+            app:destination="@+id/bankListFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/bankListFragment"
+        android:name="com.example.testapp.ui.BankListFragment"
+        android:label="BankListFragment"
+        tools:layout="@layout/fragment_banklist"
+        >
+
+        <action android:id="@+id/list_to_home"
+            app:destination="@+id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+            />
+
+
+    </fragment>
+
+</navigation>
